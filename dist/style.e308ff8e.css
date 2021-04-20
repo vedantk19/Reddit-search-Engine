@@ -1,0 +1,21 @@
+.body {
+  background-color: #f9f6f2;
+}
+
+.navbar {
+  background-color: #0f0e11;
+  color: #fff;
+}
+
+.card-img-top:hover {
+  transform: scale(1.02);
+  transition: ease-in-out 0.25s;
+}
+
+.reddit:hover {
+  transform: scale(1.01);
+  transition: ease-in-out 0.25s;
+}
+
+
+/*# sourceMappingURL=/style.e308ff8e.css.map */

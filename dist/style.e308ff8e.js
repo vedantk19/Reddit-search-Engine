@@ -117,80 +117,79 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"redditapi.js":[function(require,module,exports) {
-"use strict";
+})({"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  search: function search(searchTerm, searchLimit, sortBy, time) {
-    return fetch("http://www.reddit.com/search.json?q=".concat(searchTerm, "&sort=").concat(sortBy, "&limit=").concat(searchLimit, "&t=").concat(time)).then(function (res) {
-      return res.json();
-    }).then(function (data) {
-      return data.data.children.map(function (data) {
-        return data.data;
-      });
-    }).catch(function (err) {
-      return console.log(err);
-    });
-  }
-};
-exports.default = _default;
-},{}],"index.js":[function(require,module,exports) {
-"use strict";
-
-var _redditapi = _interopRequireDefault(require("./redditapi"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var searchForm = document.getElementById("search-form");
-var searchInput = document.getElementById("search-input");
-searchForm.addEventListener("submit", function (e) {
-  var searchTerm = searchInput.value;
-  var sortBy = document.querySelector('input[name="sortby"]:checked').value;
-  var searchLimit = document.getElementById("limit").value;
-  var time = document.getElementById("Time").value;
-
-  if (searchTerm === "") {
-    showMessage("Please add a search term", "alert-danger");
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
   }
 
-  searchInput.value = "";
-
-  _redditapi.default.search(searchTerm, searchLimit, sortBy, time).then(function (results) {
-    console.log(results);
-    var output = '<div class="card-columns">';
-    results.forEach(function (post) {
-      var image = post.preview ? post.preview.images[0].source.url : "https://rdwgroup.com/wp-content/uploads/2018/10/reddit2-800x450-1.png";
-      output += "<div class=\"card reddit\">\n                 <a href=\"http://www.reddit.com".concat(post.permalink, "\" target=\"_blank\"><img src=\"").concat(image, "\" class=\"card-img-top\" alt=\"...\"></a>\n                <div class=\"card-body\">\n                  <h5 class=\"card-title\">").concat(post.title, "</h5>\n                  <p class=\"card-text\">").concat(truncateText(post.selftext, 100), "</p>\n                  <a href=\"").concat(post.url, "\" target=\"_blank\" class=\"btn btn-primary\">Read more</a>\n                  <hr>\n                  <span class=\"badge badge-secondary\">Subreddit: ").concat(post.subreddit, "</span>\n                  <span class=\"badge badge-score\">Score: ").concat(post.score, "  Ups: ").concat(post.ups, "</span>\n                </div>\n              </div>");
-    });
-    output += "</div>";
-    document.getElementById("results").innerHTML = output;
-  });
-
-  e.preventDefault();
-});
-
-function showMessage(message, className) {
-  var div = document.createElement("div");
-  div.className = "alert ".concat(className);
-  div.appendChild(document.createTextNode(message));
-  var searchContainer = document.getElementById("search-container");
-  var search = document.getElementById("search");
-  searchContainer.insertBefore(div, search);
-  setTimeout(function () {
-    document.querySelector(".alert").remove();
-  }, 1000);
+  return bundleURL;
 }
 
-function truncateText(text, limit) {
-  var shortened = text.indexOf(" ", limit);
-  if (shortened == -1) return text;
-  return text.substring(0, shortened);
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
 }
-},{"./redditapi":"redditapi.js"}],"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"style.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -394,5 +393,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/finddit.e31bb0bc.js.map
+},{}]},{},["../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
+//# sourceMappingURL=/style.e308ff8e.js.map
