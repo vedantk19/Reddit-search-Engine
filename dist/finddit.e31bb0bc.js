@@ -164,7 +164,7 @@ searchForm.addEventListener("submit", function (e) {
     var output = '<div class="card-columns">';
     results.forEach(function (post) {
       var image = post.preview ? post.preview.images[0].source.url : "https://rdwgroup.com/wp-content/uploads/2018/10/reddit2-800x450-1.png";
-      output += "<div class=\"card reddit\">\n                 <a href=\"http://www.reddit.com".concat(post.permalink, "\" target=\"_blank\"><img src=\"").concat(image, "\" class=\"card-img-top\" alt=\"...\"></a>\n                <div class=\"card-body\">\n                  <h5 class=\"card-title\">").concat(post.title, "</h5>\n                  <p class=\"card-text\">").concat(truncateText(post.selftext, 100), "</p>\n                  <a href=\"").concat(post.url, "\" target=\"_blank\" class=\"btn btn-primary\">Read more</a>\n                  <hr>\n                  <span class=\"badge badge-secondary\">Subreddit: ").concat(post.subreddit, "</span>\n                  <span class=\"badge badge-score\">Score: ").concat(post.score, "  Ups: ").concat(post.ups, "</span>\n                </div>\n              </div>");
+      output += "<div class=\"card reddit\">\n                 <a href=\"http://www.reddit.com".concat(post.permalink, "\" target=\"_blank\"><img src=\"").concat(image, "\" class=\"card-img-top\" alt=\"...\"></a>\n                <div class=\"card-body\">\n                  <h5 class=\"card-title\">").concat(post.title, "</h5>\n                  <p class=\"card-text\">").concat(truncateText(post.selftext, 100), "</p>\n                  <a href=\"").concat(post.url, "\" target=\"_blank\" id=\"cardbtn\" class=\"btn btn-block mt-4\">Read more</a>\n                  <hr>\n                  <span class=\"badge badge-secondary\">Subreddit: ").concat(post.subreddit, "</span>\n                  <span class=\"badge badge-score\">Score: ").concat(post.score, "  Ups: ").concat(post.ups, "</span>\n                </div>\n              </div>");
     });
     output += "</div>";
     document.getElementById("results").innerHTML = output;
@@ -218,7 +218,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49549" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63587" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,10 +1,25 @@
 .body {
-  background-color: #f9f6f2;
+  background-color: #262228;
+  font-family: "Oswald", sans-serif;
+}
+
+.about {
+  background-color: #262228;
+  color: white;
+  font-family: "Oswald", sans-serif;
 }
 
 .navbar {
-  background-color: #0f0e11;
+  background-color: #ff3b3f;
   color: #fff;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  font-family: "Oswald", sans-serif;
+}
+
+.navbar a {
+  color: white;
 }
 
 .card-img-top:hover {
@@ -15,6 +30,33 @@
 .reddit:hover {
   transform: scale(1.01);
   transition: ease-in-out 0.25s;
+}
+
+.navbar a:hover {
+  color: #caebf2;
+  text-decoration: none;
+}
+
+.card {
+  background-color: #caebf2 !important;
+}
+
+.btn {
+  background-color: #ff3b3f;
+  color: white;
+}
+
+.btn:hover {
+  transform: scale(1.01);
+  transition: ease 0.25s;
+  background-color: #305760;
+  color: white;
+}
+
+.footer-copyright {
+  color: rgb(157, 153, 153) !important;
+  font-size: x-small;
+  font-family: "Oswald", sans-serif;
 }
 
 

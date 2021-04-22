@@ -7,18 +7,21 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="/style.e308ff8e.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
   
   <title>Reddit Search Engine</title>
 <script src="/style.e308ff8e.js"></script></head>
 
 <body class="body">
-  <nav class="navbar mb-3">
+  <nav class="navbar mb-3" id="navbar">
     <div class="container">
-      <span class="navbar-brand">Reddit Search Engine</span>
+      <span class="navbar-brand"><a href="/index.html">Reddit Search Engine</a></span>
+      <span class="navbar-brand"><a href="/about.html">About</a></span>
     </div>
   </nav>
   <div id="search-container" class="container">
-    <div id="search" class="card card-body bg-light mb-2">
+    <div id="search" class="card card-body mb-2">
       <h4 class="h4css">Search Reddit</h4>
       <form id="search-form">
         <div class="form-group">
@@ -69,12 +72,14 @@
             <option value="all" selected="">all</option>
           </select>
         </div>
-        <button type="submit" class="btn btn-dark btn-block mt-4">Search</button>
+        <button type="submit" class="btn btn-block mt-4">Search</button>
       </form>
     </div>
     <div id="results"></div>
   </div>
-  <script src="/finddit.e31bb0bc.js"></script>
+  <div class="footer-copyright text-center py-3"><p>Made by Vedant, Hamza, Hrishit.</p></div>
+  <script type="module" src="/finddit.e31bb0bc.js"></script>
+  
 </body>
 
 </html>

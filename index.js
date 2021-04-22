@@ -32,7 +32,7 @@ searchForm.addEventListener("submit", (e) => {
                   <p class="card-text">${truncateText(post.selftext, 100)}</p>
                   <a href="${
                     post.url
-                  }" target="_blank" class="btn btn-primary">Read more</a>
+                  }" target="_blank" id="cardbtn" class="btn btn-block mt-4">Read more</a>
                   <hr>
                   <span class="badge badge-secondary">Subreddit: ${
                     post.subreddit
